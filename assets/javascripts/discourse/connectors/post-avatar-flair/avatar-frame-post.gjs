@@ -8,7 +8,6 @@ export default class AvatarFramePost extends Component {
   }
 
   <template>
-    {{yield}}
     {{#if this.frameClass}}
       <div class="avatar-frame-overlay {{this.frameClass}}"></div>
     {{/if}}
