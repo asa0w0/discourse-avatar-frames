@@ -8,10 +8,9 @@
 .avatar-frame-overlay {
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
-  right: 0;
-  margin: auto;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   aspect-ratio: 1 / 1;
   pointer-events: none;
@@ -21,8 +20,6 @@
   
   /* Default Scale */
   --s: 1;
-  width: calc(120px * var(--s));
-  height: calc(120px * var(--s));
 }
 
 /* 1. Post & Topic Avatars (45px usually) */
