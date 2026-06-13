@@ -7,7 +7,7 @@ import { fn } from "@ember/helper";
 import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 import avatar from "discourse/helpers/avatar";
-import I18n from "I18n";
+import I18n, { i18n } from "discourse-i18n";
 
 const eq = (a, b) => a === b;
 const notEq = (a, b) => a !== b;
@@ -83,7 +83,7 @@ export default class AvatarFramePreferences extends Component {
 
   <template>
     <div class="control-group avatar-frame-preferences">
-      <label class="control-label">{{I18n.t "avatar_frames.title"}}</label>
+      <label class="control-label">{{i18n "avatar_frames.title"}}</label>
       <div class="controls">
         <div class="avatar-frame-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;">
           {{#each this.frames as |frame|}}
@@ -111,7 +111,7 @@ export default class AvatarFramePreferences extends Component {
           {{/each}}
         </div>
         <div class="instructions" style="margin-top: 10px; font-size: 0.9em; color: var(--primary-medium);">
-          {{I18n.t "avatar_frames.instructions"}}
+          {{i18n "avatar_frames.instructions"}}
         </div>
       </div>
     </div>
