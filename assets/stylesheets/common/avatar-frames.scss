@@ -272,3 +272,24 @@
   100% { opacity: 1; box-shadow: 0 0 calc(15px * var(--s)) rgba(255, 255, 255, 1); }
 }
 .avatar-frame-btn.is-locked { opacity: 0.5; filter: grayscale(100%); cursor: not-allowed; }
+
+.avatar-frame-preferences {
+  .preview-avatar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .post-avatar {
+    margin: 0 auto;
+    display: block;
+    
+    img.avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
