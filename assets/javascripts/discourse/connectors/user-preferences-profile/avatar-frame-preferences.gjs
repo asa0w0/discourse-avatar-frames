@@ -89,8 +89,8 @@ export default class AvatarFramePreferences extends Component {
           {{#each this.frames as |frame|}}
             <button 
               type="button" 
-              class="btn btn-default avatar-frame-btn {{if (eq this.selectedFrame frame.id) 'btn-primary'}}"
-              style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border-radius: 8px; width: 100%; {{if frame.isLocked 'opacity: 0.5; filter: grayscale(100%); cursor: not-allowed;'}}"
+              class="btn btn-default avatar-frame-btn {{if (eq this.selectedFrame frame.id) 'btn-primary'}} {{if frame.isLocked 'is-locked'}}"
+              style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border-radius: 8px; width: 100%;"
               {{on "click" (fn this.selectFrame frame)}}
               disabled={{frame.isLocked}}
               title={{frame.lockedHint}}

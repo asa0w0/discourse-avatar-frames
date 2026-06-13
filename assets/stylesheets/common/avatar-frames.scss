@@ -222,7 +222,6 @@
     animation: breatheRing 1s ease-in-out infinite alternate;
   }
 }
-}
 
 /* Animations */
 @keyframes ssjAura {
@@ -268,3 +267,4 @@
   0% { opacity: 0.5; box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
   100% { opacity: 1; box-shadow: 0 0 15px rgba(255, 255, 255, 1); }
 }
+.avatar-frame-btn.is-locked { opacity: 0.5; filter: grayscale(100%); cursor: not-allowed; }
