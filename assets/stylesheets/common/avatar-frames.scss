@@ -5,6 +5,27 @@
   position: relative;
 }
 
+@media screen and (min-width: 768px) {
+  .user-profile-avatar {
+    margin-right: 20px !important;
+    margin-bottom: 10px !important;
+    
+    img.avatar {
+      margin: 0 !important;
+    }
+  }
+  
+  .collapsed-info .user-profile-avatar {
+    margin-right: 10px !important;
+    margin-bottom: 0 !important;
+    
+    img.avatar {
+      margin: 0 !important;
+    }
+  }
+}
+
+
 .avatar-frame-overlay {
   position: absolute;
   top: 0;
@@ -282,13 +303,17 @@
   }
   
   .post-avatar {
-    margin: 0 auto;
-    display: block;
+    margin: 0 auto !important;
+    display: block !important;
+    width: 45px !important;
+    height: 45px !important;
     
     img.avatar {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
   }
 }
