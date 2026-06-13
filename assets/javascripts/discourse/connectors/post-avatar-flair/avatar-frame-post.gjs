@@ -17,7 +17,10 @@ export default class AvatarFramePost extends Component {
   <template>
     {{yield}}
     {{#if this.frameClass}}
-      <div class="avatar-frame-overlay {{this.frameClass}}"></div>
+      <div 
+        class="avatar-frame-overlay {{this.frameClass}}"
+        style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; border-radius: 50%; pointer-events: none; z-index: 999; border: 5px solid lime; background: rgba(0, 255, 0, 0.3);">
+      </div>
     {{/if}}
   </template>
 }
