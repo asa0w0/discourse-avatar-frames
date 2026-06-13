@@ -74,6 +74,19 @@
 }
 
 .avatar-frame-overlay {
+  &.frame-cyber-portal {
+    background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/discord-avatar-decoration.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 116%;
+    height: 116%;
+    top: -8%;
+    left: -8%;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
   &.frame-dragonball-ssj {
     border: calc(3.5px * var(--s)) solid transparent;
     background: linear-gradient(0deg, #ffd700, #ff8c00, #ffeb3b) border-box;
