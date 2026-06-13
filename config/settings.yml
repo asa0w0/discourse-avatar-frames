@@ -2,3 +2,7 @@ plugins:
   avatar_frames_enabled:
     default: true
     client: true
+  avatar_frames_config:
+    default: "vibrant-neon:Vibrant Neon:tl0|cyberpunk-glitch:Cyberpunk Glitch:tl2|dragonball-ssj:Dragonball SSJ:group:vip|golden-staff:Golden Staff:group:staff"
+    type: list
+    client: true

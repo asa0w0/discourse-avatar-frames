@@ -97,9 +97,38 @@
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     animation: minimalGlow 3s infinite alternate;
   }
+
+  /* 11. Dragonball SSJ Aura */
+  &.frame-dragonball-ssj {
+    border: 4px solid transparent;
+    background: linear-gradient(0deg, #ffcc00, #ffeb3b, #fff9c4) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    filter: drop-shadow(0 -5px 12px rgba(255, 235, 59, 0.9)) drop-shadow(0 5px 8px rgba(255, 152, 0, 0.8));
+    animation: ssjAura 0.5s infinite alternate, ssjPulse 2s linear infinite;
+  }
+
+  /* 12. Golden Staff */
+  &.frame-golden-staff {
+    border: 3px solid #ffca28;
+    box-shadow: 0 0 10px #ffc107, 0 0 20px #ffb300, inset 0 0 10px #ffe082;
+    animation: pulsePlasma 3s infinite alternate;
+  }
 }
 
 /* Animations */
+@keyframes ssjAura {
+  0% { filter: drop-shadow(0 -4px 10px rgba(255, 235, 59, 0.8)) drop-shadow(0 2px 5px rgba(255, 152, 0, 0.6)); }
+  100% { filter: drop-shadow(0 -8px 18px rgba(255, 235, 59, 1)) drop-shadow(0 4px 10px rgba(255, 152, 0, 0.9)); }
+}
+
+@keyframes ssjPulse {
+  0% { opacity: 0.9; }
+  50% { opacity: 1; }
+  100% { opacity: 0.9; }
+}
+
 @keyframes spinRotate {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

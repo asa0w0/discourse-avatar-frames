@@ -1,0 +1,4 @@
+en:
+  site_settings:
+    avatar_frames_enabled: "Enable Avatar Frames plugin"
+    avatar_frames_config: "Avatar Frames Configuration (Format: frame_id:Frame Name:unlock_condition). Valid conditions: tl0, tl1, tl2, tl3, tl4, group:group_name"

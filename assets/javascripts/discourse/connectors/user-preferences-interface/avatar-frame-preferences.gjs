@@ -11,31 +11,61 @@ import avatar from "discourse/helpers/avatar";
 const eq = (a, b) => a === b;
 const notEq = (a, b) => a !== b;
 
-const AVAILABLE_FRAMES = [
-  { id: "none", name: "Kein Rahmen" },
-  { id: "vibrant-neon", name: "Neon Glow (Premium)" },
-  { id: "cyber-glitch", name: "Cyberpunk Glitch" },
-  { id: "gold-shimmer", name: "Gold Shimmer" },
-  { id: "rgb-gamer", name: "RGB Gamer" },
-  { id: "plasma-pulse", name: "Plasma Pulse" },
-  { id: "sci-fi-dots", name: "Sci-Fi Dots" },
-  { id: "breathing-ring", name: "Breathing Ring" },
-  { id: "magma-edge", name: "Magma Edge" },
-  { id: "holo-crystal", name: "Holo Crystal" },
-  { id: "minimal-glow", name: "Minimal Glow" }
-];
-
 export default class AvatarFramePreferences extends Component {
   @service currentUser;
+  @service siteSettings;
   @tracked selectedFrame = this.currentUser?.custom_fields?.avatar_frame || "none";
-  frames = AVAILABLE_FRAMES;
+
+  get frames() {
+    const configStr = this.siteSettings.avatar_frames_config || "";
+    const frameConfigs = configStr.split("|").filter(Boolean);
+    
+    const framesList = [{ id: "none", name: "Kein Rahmen", isLocked: false, lockedHint: null }];
+    
+    for (const conf of frameConfigs) {
+      const parts = conf.split(":");
+      if (parts.length >= 3) {
+        const id = parts[0].trim();
+        const name = parts[1].trim();
+        const condition = parts.slice(2).join(":").trim();
+        
+        let isLocked = false;
+        let lockedHint = null;
+        
+        if (condition.startsWith("tl")) {
+          const requiredLevel = parseInt(condition.replace("tl", ""), 10);
+          if (this.currentUser.trust_level < requiredLevel) {
+            isLocked = true;
+            lockedHint = `🔒 Benötigt Level ${requiredLevel}`;
+          }
+        } else if (condition.startsWith("group:")) {
+          const requiredGroup = condition.replace("group:", "").trim();
+          const userGroups = this.currentUser.groups || [];
+          const hasGroup = userGroups.some(g => g.name.toLowerCase() === requiredGroup.toLowerCase());
+          
+          if (!hasGroup) {
+            isLocked = true;
+            lockedHint = `🔒 Benötigt VIP/Gruppe`;
+          }
+        }
+        
+        framesList.push({ id, name, isLocked, lockedHint });
+      }
+    }
+    
+    return framesList;
+  }
 
   @action
-  async selectFrame(frameId) {
-    this.selectedFrame = frameId;
+  async selectFrame(frame) {
+    if (frame.isLocked) {
+      return;
+    }
+    
+    this.selectedFrame = frame.id;
     
     const customFields = Object.assign({}, this.currentUser.custom_fields, { 
-      avatar_frame: frameId === "none" ? null : frameId 
+      avatar_frame: frame.id === "none" ? null : frame.id 
     });
     
     try {
@@ -54,13 +84,15 @@ export default class AvatarFramePreferences extends Component {
     <div class="control-group avatar-frame-preferences">
       <label class="control-label">Avatar Rahmen</label>
       <div class="controls">
-        <div class="avatar-frame-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px;">
+        <div class="avatar-frame-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;">
           {{#each this.frames as |frame|}}
             <button 
               type="button" 
               class="btn btn-default avatar-frame-btn {{if (eq this.selectedFrame frame.id) 'btn-primary'}}"
-              style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border-radius: 8px; width: 100%;"
-              {{on "click" (fn this.selectFrame frame.id)}}
+              style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; border-radius: 8px; width: 100%; {{if frame.isLocked 'opacity: 0.5; filter: grayscale(100%); cursor: not-allowed;'}}"
+              {{on "click" (fn this.selectFrame frame)}}
+              disabled={{frame.isLocked}}
+              title={{frame.lockedHint}}
             >
               <div class="preview-avatar-wrapper" style="margin-bottom: 8px;">
                 <div class="user-profile-avatar" style="position: relative; width: 45px; height: 45px;">
@@ -70,12 +102,15 @@ export default class AvatarFramePreferences extends Component {
                   {{/if}}
                 </div>
               </div>
-              <span class="frame-name" style="font-size: 0.85em; text-align: center;">{{frame.name}}</span>
+              <span class="frame-name" style="font-size: 0.85em; text-align: center; font-weight: bold;">{{frame.name}}</span>
+              {{#if frame.isLocked}}
+                <span class="frame-hint" style="font-size: 0.75em; text-align: center; color: var(--danger); margin-top: 4px;">{{frame.lockedHint}}</span>
+              {{/if}}
             </button>
           {{/each}}
         </div>
         <div class="instructions" style="margin-top: 10px; font-size: 0.9em; color: var(--primary-medium);">
-          Wähle einen animierten Rahmen für deinen Avatar aus. Die Änderung wird sofort gespeichert.
+          Wähle einen animierten Rahmen für deinen Avatar aus. Besondere Rahmen erfordern ein höheres Trust Level oder VIP-Status.
         </div>
       </div>
     </div>
