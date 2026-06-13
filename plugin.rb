@@ -13,6 +13,9 @@ after_initialize do
   # Make it public so the frontend can read it everywhere
   allow_public_user_custom_field(:avatar_frame)
 
+  # Register the CSS file so Discourse actually loads it
+  register_asset "stylesheets/common/avatar-frames.scss"
+
   # Serialize into User (Profile / Card)
   add_to_serializer(:user, :avatar_frame) do
     object.custom_fields['avatar_frame']
