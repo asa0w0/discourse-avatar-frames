@@ -85,6 +85,8 @@
     left: -8%;
     border: none !important;
     box-shadow: none !important;
+    -webkit-mask: radial-gradient(circle, transparent 38%, #000 40%);
+    mask: radial-gradient(circle, transparent 38%, #000 40%);
   }
 
   &.frame-dragonball-ssj {
