@@ -5,6 +5,17 @@
   position: relative;
 }
 
+.avatar-frame-overlay-scaler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  transform-origin: top left;
+}
+
 .avatar-frame-overlay {
   position: absolute;
   top: 0;
@@ -13,37 +24,35 @@
   height: 120px;
   border-radius: 50%;
   aspect-ratio: 1 / 1;
-  pointer-events: none;
   box-sizing: border-box;
-  transform-origin: top left;
-  z-index: 2;
+  transform-origin: center center;
 }
 
 /* 1. Post & Topic Avatars (45px usually) */
 /* scale = 45 / 120 = 0.375 */
-.post-avatar .avatar-frame-overlay {
+.post-avatar .avatar-frame-overlay-scaler {
   transform: scale(0.375);
 }
-.topic-avatar .avatar-frame-overlay {
+.topic-avatar .avatar-frame-overlay-scaler {
   top: 1em; /* Discourse adds 1em padding-top to topic-avatar */
   transform: scale(0.375);
 }
 
 /* 2. User Card Avatars */
 /* Desktop is 120px (scale 1), Mobile is 60px (scale 0.5) */
-.user-card-avatar .avatar-frame-overlay {
+.user-card-avatar .avatar-frame-overlay-scaler {
   transform: scale(1);
 }
-.mobile-view .user-card-avatar .avatar-frame-overlay {
+.mobile-view .user-card-avatar .avatar-frame-overlay-scaler {
   transform: scale(0.5);
 }
 
 /* 3. User Profile Avatars */
 /* Default is 120px (scale 1). Collapsed header is 45px (scale 0.375) */
-.user-profile-avatar .avatar-frame-overlay {
+.user-profile-avatar .avatar-frame-overlay-scaler {
   transform: scale(1);
 }
-.collapsed-info .user-profile-avatar .avatar-frame-overlay {
+.collapsed-info .user-profile-avatar .avatar-frame-overlay-scaler {
   transform: scale(0.375);
 }
 

@@ -99,7 +99,9 @@ export default class AvatarFramePreferences extends Component {
                 <div class="post-avatar" style="position: relative; width: 45px; height: 45px; padding-top: 0;">
                   {{avatar this.currentUser imageSize="large"}}
                   {{#if (notEq frame.id "none")}}
-                    <div class="avatar-frame-overlay frame-{{frame.id}}"></div>
+                    <div class="avatar-frame-overlay-scaler">
+                      <div class="avatar-frame-overlay frame-{{frame.id}}"></div>
+                    </div>
                   {{/if}}
                 </div>
               </div>
