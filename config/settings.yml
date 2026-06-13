@@ -1,0 +1,4 @@
+plugins:
+  avatar_frames_enabled:
+    default: true
+    client: true

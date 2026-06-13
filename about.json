@@ -1,0 +1,13 @@
+{
+  "name": "Discourse Avatar Frames",
+  "about_url": "https://github.com/discourse/discourse-avatar-frames",
+  "license_url": "https://opensource.org/licenses/MIT",
+  "component": true,
+  "theme_settings": {
+    "user_field_name": {
+      "type": "string",
+      "default": "Avatar Frame",
+      "description": "Name of the User Field used to store the selected avatar frame."
+    }
+  }
+}
