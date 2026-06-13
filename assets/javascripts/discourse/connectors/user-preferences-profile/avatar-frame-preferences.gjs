@@ -95,10 +95,10 @@ export default class AvatarFramePreferences extends Component {
               title={{frame.lockedHint}}
             >
               <div class="preview-avatar-wrapper" style="margin-bottom: 8px;">
-                <div class="user-profile-avatar" style="position: relative; width: 45px; height: 45px;">
+                <div class="post-avatar" style="position: relative; width: 45px; height: 45px; padding-top: 0;">
                   {{avatar this.currentUser imageSize="large"}}
                   {{#if (notEq frame.id "none")}}
-                    <div class="avatar-frame-overlay frame-{{frame.id}}"></div>
+                    <div class="avatar-frame-overlay frame-{{frame.id}}" style="top: 0; left: 0;"></div>
                   {{/if}}
                 </div>
               </div>

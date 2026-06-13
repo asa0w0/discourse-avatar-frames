@@ -8,15 +8,37 @@
 
 .avatar-frame-overlay {
   position: absolute;
-  /* Frame stick directly to avatar */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   border-radius: 50%;
   pointer-events: none;
   z-index: 2;
   box-sizing: border-box;
+  aspect-ratio: 1 / 1;
+}
+
+/* Post Avatars (45px usually, with 1em top padding) */
+.post-avatar .avatar-frame-overlay,
+.topic-avatar .avatar-frame-overlay {
+  width: var(--topic-avatar-width, 45px);
+  height: var(--topic-avatar-width, 45px);
+  top: 1em; /* Discourse adds 1em padding-top to topic-avatar */
+  left: 0;
+}
+
+/* User Card Avatars (120px usually) */
+.user-card-avatar .avatar-frame-overlay {
+  width: var(--avatar-width, 120px);
+  height: var(--avatar-width, 120px);
+  top: 0;
+  left: 0;
+}
+
+/* User Profile Avatars (120px usually) */
+.user-profile-avatar .avatar-frame-overlay {
+  width: 120px;
+  height: 120px;
+  top: 0;
+  left: 0;
+}
 
   /* --- 1. ANIME & ENERGY --- */
   
