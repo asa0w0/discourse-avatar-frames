@@ -7,11 +7,11 @@
 
 .avatar-frame-overlay {
   position: absolute;
-  /* Discourse avatars are usually 45px. We make the frame slightly larger. */
-  top: -10%;
-  left: -10%;
-  width: 120%;
-  height: 120%;
+  /* Frame stick directly to avatar */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   pointer-events: none;
   z-index: 2;
