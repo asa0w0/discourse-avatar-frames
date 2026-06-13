@@ -7,6 +7,7 @@ import { fn } from "@ember/helper";
 import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 import avatar from "discourse/helpers/avatar";
+import I18n from "I18n";
 
 const eq = (a, b) => a === b;
 const notEq = (a, b) => a !== b;
@@ -20,7 +21,7 @@ export default class AvatarFramePreferences extends Component {
     const configStr = this.siteSettings.avatar_frames_config || "";
     const frameConfigs = configStr.split("|").filter(Boolean);
     
-    const framesList = [{ id: "none", name: "Kein Rahmen", isLocked: false, lockedHint: null }];
+    const framesList = [{ id: "none", name: I18n.t("avatar_frames.none"), isLocked: false, lockedHint: null }];
     
     for (const conf of frameConfigs) {
       const parts = conf.split(":");
@@ -36,7 +37,7 @@ export default class AvatarFramePreferences extends Component {
           const requiredLevel = parseInt(condition.replace("tl", ""), 10);
           if (this.currentUser.trust_level < requiredLevel) {
             isLocked = true;
-            lockedHint = `🔒 Benötigt Level ${requiredLevel}`;
+            lockedHint = I18n.t("avatar_frames.requires_level", { level: requiredLevel });
           }
         } else if (condition.startsWith("group:")) {
           const requiredGroup = condition.replace("group:", "").trim();
@@ -45,7 +46,7 @@ export default class AvatarFramePreferences extends Component {
           
           if (!hasGroup) {
             isLocked = true;
-            lockedHint = `🔒 Benötigt VIP/Gruppe`;
+            lockedHint = I18n.t("avatar_frames.requires_group");
           }
         }
         
@@ -82,7 +83,7 @@ export default class AvatarFramePreferences extends Component {
 
   <template>
     <div class="control-group avatar-frame-preferences">
-      <label class="control-label">Avatar Rahmen</label>
+      <label class="control-label">{{I18n.t "avatar_frames.title"}}</label>
       <div class="controls">
         <div class="avatar-frame-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;">
           {{#each this.frames as |frame|}}
@@ -110,7 +111,7 @@ export default class AvatarFramePreferences extends Component {
           {{/each}}
         </div>
         <div class="instructions" style="margin-top: 10px; font-size: 0.9em; color: var(--primary-medium);">
-          Wähle einen animierten Rahmen für deinen Avatar aus. Besondere Rahmen erfordern ein höheres Trust Level oder VIP-Status.
+          {{I18n.t "avatar_frames.instructions"}}
         </div>
       </div>
     </div>
