@@ -6,7 +6,6 @@ import { on } from "@ember/modifier";
 import { fn } from "@ember/helper";
 import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
-import Avatar from "discourse/components/avatar";
 
 const eq = (a, b) => a === b;
 const notEq = (a, b) => a !== b;
@@ -29,6 +28,10 @@ export default class AvatarFramePreferences extends Component {
   @service currentUser;
   @tracked selectedFrame = this.currentUser?.custom_fields?.avatar_frame || "none";
   frames = AVAILABLE_FRAMES;
+
+  get avatarUrl() {
+    return this.currentUser?.avatar_template?.replace("{size}", "120") || "";
+  }
 
   @action
   async selectFrame(frameId) {
@@ -64,7 +67,7 @@ export default class AvatarFramePreferences extends Component {
             >
               <div class="preview-avatar-wrapper" style="margin-bottom: 8px;">
                 <div class="user-profile-avatar" style="position: relative; width: 45px; height: 45px;">
-                  <Avatar @user={{this.currentUser}} @imageSize="large" />
+                  <img src={{this.avatarUrl}} alt="avatar" class="avatar" width="45" height="45" style="border-radius: 50%;">
                   {{#if (notEq frame.id "none")}}
                     <div class="avatar-frame-overlay frame-{{frame.id}}"></div>
                   {{/if}}
