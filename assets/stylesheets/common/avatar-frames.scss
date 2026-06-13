@@ -41,7 +41,11 @@
 
 /* 3. User Profile Avatars */
 .user-profile-avatar .avatar-frame-overlay {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   --s: 1;
+
 }
 .collapsed-info .user-profile-avatar .avatar-frame-overlay {
   --s: 0.375;
