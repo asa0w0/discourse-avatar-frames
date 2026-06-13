@@ -74,19 +74,17 @@
 }
 
 .avatar-frame-overlay {
-  &.frame-cyber-portal {
-    background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/discord-avatar-decoration.gif");
+  &.frame-dream-dive-stars {
+    background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/dream-dive-stars.webp");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 116%;
-    height: 116%;
-    top: -8%;
-    left: -8%;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
     border: none !important;
     box-shadow: none !important;
-    -webkit-mask: radial-gradient(circle, transparent 38%, #000 40%);
-    mask: radial-gradient(circle, transparent 38%, #000 40%);
   }
 
   &.frame-dragonball-ssj {
