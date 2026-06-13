@@ -40,6 +40,7 @@
   left: 0;
 }
 
+.avatar-frame-overlay {
   /* --- 1. ANIME & ENERGY --- */
   
   &.frame-dragonball-ssj {
@@ -220,6 +221,7 @@
     box-shadow: 0 0 15px #ff1493, inset 0 0 15px #ff1493;
     animation: breatheRing 1s ease-in-out infinite alternate;
   }
+}
 }
 
 /* Animations */
