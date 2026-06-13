@@ -9,7 +9,7 @@ export default class AvatarFrameUserProfile extends Component {
   <template>
     {{yield}}
     {{#if this.frameClass}}
-      <div class="avatar-frame-overlay-scaler"><div class="avatar-frame-overlay {{this.frameClass}}"></div></div>
+      <div class="avatar-frame-overlay {{this.frameClass}}"></div>
     {{/if}}
   </template>
 }

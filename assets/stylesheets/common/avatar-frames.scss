@@ -1,34 +1,66 @@
-/* Ensure the parent containers have relative positioning so the absolute overlay works */
+/* Avatar Frame Alignment & Scaling */
 .post-avatar,
 .user-profile-avatar,
 .user-card-avatar {
   position: relative;
 }
 
-.avatar-frame-overlay-scaler {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
-  transform-origin: top left;
-}
-
 .avatar-frame-overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 120px;
-  height: 120px;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  z-index: 2;
+  box-sizing: border-box;
+  transform-origin: center center;
+  
+  /* Default Scale */
+  --s: 1;
+  width: calc(calc(120px * var(--s)) * var(--s));
+  height: calc(calc(120px * var(--s)) * var(--s));
+}
+
+/* 1. Post & Topic Avatars (calc(45px * var(--s)) usually) */
+.post-avatar .avatar-frame-overlay {
+  --s: 0.375;
+}
+.topic-avatar .avatar-frame-overlay {
+  top: 1em; /* Discourse padding */
+  --s: 0.375;
+}
+
+/* 2. User Card Avatars */
+.user-card-avatar .avatar-frame-overlay {
+  --s: 1;
+}
+.mobile-view .user-card-avatar .avatar-frame-overlay {
+  --s: 0.5;
+}
+
+/* 3. User Profile Avatars */
+.user-profile-avatar .avatar-frame-overlay {
+  --s: 1;
+}
+.collapsed-info .user-profile-avatar .avatar-frame-overlay {
+  --s: 0.375;
+}
+
+.avatar-frame-overlay {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(120px * var(--s));
+  height: calc(120px * var(--s));
   border-radius: 50%;
   aspect-ratio: 1 / 1;
   box-sizing: border-box;
   transform-origin: center center;
 }
 
-/* 1. Post & Topic Avatars (45px usually) */
+/* 1. Post & Topic Avatars (calc(45px * var(--s)) usually) */
 /* scale = 45 / 120 = 0.375 */
 .post-avatar .avatar-frame-overlay-scaler {
   transform: scale(0.375);
@@ -39,7 +71,7 @@
 }
 
 /* 2. User Card Avatars */
-/* Desktop is 120px (scale 1), Mobile is 60px (scale 0.5) */
+/* Desktop is calc(120px * var(--s)) (scale 1), Mobile is calc(60px * var(--s)) (scale 0.5) */
 .user-card-avatar .avatar-frame-overlay-scaler {
   transform: scale(1);
 }
@@ -48,7 +80,7 @@
 }
 
 /* 3. User Profile Avatars */
-/* Default is 120px (scale 1). Collapsed header is 45px (scale 0.375) */
+/* Default is calc(120px * var(--s)) (scale 1). Collapsed header is calc(45px * var(--s)) (scale 0.375) */
 .user-profile-avatar .avatar-frame-overlay-scaler {
   transform: scale(1);
 }
@@ -60,189 +92,189 @@
   /* --- 1. ANIME & ENERGY --- */
   
   &.frame-dragonball-ssj {
-    border: 4px solid transparent;
+    border: calc(4px * var(--s)) solid transparent;
     background: linear-gradient(0deg, #ffcc00, #ffeb3b, #fff9c4) border-box;
     -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;
-    filter: drop-shadow(0 -5px 12px rgba(255, 235, 59, 0.9)) drop-shadow(0 5px 8px rgba(255, 152, 0, 0.8));
+    filter: drop-shadow(0 calc(-5px * var(--s)) calc(12px * var(--s)) rgba(255, 235, 59, 0.9)) drop-shadow(0 calc(5px * var(--s)) calc(8px * var(--s)) rgba(255, 152, 0, 0.8));
     animation: ssjAura 0.5s infinite alternate, ssjPulse 2s linear infinite;
   }
 
   &.frame-ultra-instinct {
-    border: 3px solid #e0e0e0;
-    box-shadow: 0 0 15px #ffffff, inset 0 0 10px #ffffff;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+    border: calc(3px * var(--s)) solid #e0e0e0;
+    box-shadow: 0 0 calc(15px * var(--s)) #ffffff, inset 0 0 calc(10px * var(--s)) #ffffff;
+    filter: drop-shadow(0 0 calc(8px * var(--s)) rgba(255, 255, 255, 0.8));
     animation: pulsePlasma 2s infinite alternate, spinRotateReverse 10s linear infinite;
   }
 
   &.frame-chakra-flow {
-    border: 4px solid #00bfff;
+    border: calc(4px * var(--s)) solid #00bfff;
     border-radius: 50%;
-    box-shadow: 0 0 15px #00bfff, inset 0 0 15px #00bfff;
+    box-shadow: 0 0 calc(15px * var(--s)) #00bfff, inset 0 0 calc(15px * var(--s)) #00bfff;
     border-top-color: transparent;
     border-bottom-color: transparent;
     animation: spinRotate 1s linear infinite;
   }
 
   &.frame-sharingan-spin {
-    border: 4px solid #cc0000;
-    box-shadow: 0 0 10px #000, inset 0 0 5px #cc0000;
+    border: calc(4px * var(--s)) solid #cc0000;
+    box-shadow: 0 0 calc(10px * var(--s)) #000, inset 0 0 calc(5px * var(--s)) #cc0000;
     border-style: dashed;
     animation: spinRotateReverse 3s linear infinite;
   }
 
   &.frame-dark-haki {
-    border: 4px solid #111;
-    box-shadow: 0 0 10px #ff0000, inset 0 0 10px #ff0000;
-    filter: drop-shadow(0 0 5px #000);
+    border: calc(4px * var(--s)) solid #111;
+    box-shadow: 0 0 calc(10px * var(--s)) #ff0000, inset 0 0 calc(10px * var(--s)) #ff0000;
+    filter: drop-shadow(0 0 calc(5px * var(--s)) #000);
     animation: glitchRing 0.5s infinite;
   }
 
   /* --- 2. CYBERPUNK & GAMING --- */
 
   &.frame-neon-glitch {
-    border: 3px solid #ff00ff;
-    box-shadow: 0 0 8px #00ffff, inset 0 0 8px #ff00ff;
+    border: calc(3px * var(--s)) solid #ff00ff;
+    box-shadow: 0 0 calc(8px * var(--s)) #00ffff, inset 0 0 calc(8px * var(--s)) #ff00ff;
     animation: glitchRing 1.5s infinite;
   }
 
   &.frame-rgb-gamer {
     background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #fff 0);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - calc(5px * var(--s))), #fff 0);
     animation: spinRotate 2s linear infinite;
   }
 
   &.frame-hologram-grid {
-    border: 3px solid rgba(0, 255, 255, 0.5);
+    border: calc(3px * var(--s)) solid rgba(0, 255, 255, 0.5);
     background: repeating-conic-gradient(from 0deg, rgba(0, 255, 255, 0.2) 0deg 10deg, transparent 10deg 20deg);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #fff 0);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - calc(8px * var(--s))), #fff 0);
     animation: spinRotate 6s linear infinite;
   }
 
   &.frame-plasma-ring {
-    border: 4px solid #8a2be2;
-    box-shadow: 0 0 20px #8a2be2, 0 0 40px #8a2be2 inset;
+    border: calc(4px * var(--s)) solid #8a2be2;
+    box-shadow: 0 0 calc(20px * var(--s)) #8a2be2, 0 0 calc(40px * var(--s)) #8a2be2 inset;
     animation: pulsePlasma 1s ease-in-out infinite alternate;
   }
 
   &.frame-8bit-pixel {
-    border: 4px dashed #00ff00;
+    border: calc(4px * var(--s)) dashed #00ff00;
     border-radius: 0; /* Blocky look */
-    box-shadow: inset 0 0 0 4px #000;
+    box-shadow: inset 0 0 0 calc(4px * var(--s)) #000;
     transform: scale(1.1);
   }
 
   /* --- 3. MAGIC & ELEMENTS --- */
 
   &.frame-hellfire {
-    border: 4px solid #ff4500;
-    box-shadow: 0 0 15px #ff4500, inset 0 0 10px #ff4500;
+    border: calc(4px * var(--s)) solid #ff4500;
+    box-shadow: 0 0 calc(15px * var(--s)) #ff4500, inset 0 0 calc(10px * var(--s)) #ff4500;
     background: conic-gradient(from 0deg, #ff4500, #ff8c00, #ff4500);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #fff 0);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - calc(5px * var(--s))), #fff 0);
     animation: spinRotate 1.5s linear infinite;
   }
 
   &.frame-frost-crystal {
-    border: 4px solid #00ffff;
-    box-shadow: 0 0 15px #00ffff, inset 0 0 10px #00ffff;
+    border: calc(4px * var(--s)) solid #00ffff;
+    box-shadow: 0 0 calc(15px * var(--s)) #00ffff, inset 0 0 calc(10px * var(--s)) #00ffff;
     border-style: dotted;
     animation: breatheRing 3s ease-in-out infinite alternate;
   }
 
   &.frame-druid-nature {
-    border: 5px double #32cd32;
-    box-shadow: 0 0 10px #228b22;
+    border: calc(5px * var(--s)) double #32cd32;
+    box-shadow: 0 0 calc(10px * var(--s)) #228b22;
     animation: spinRotateReverse 15s linear infinite;
   }
 
   &.frame-arcane-circle {
-    border: 2px solid #9400d3;
-    outline: 2px dashed #9400d3;
-    outline-offset: 4px;
-    box-shadow: 0 0 15px #9400d3 inset;
+    border: calc(2px * var(--s)) solid #9400d3;
+    outline: calc(2px * var(--s)) dashed #9400d3;
+    outline-offset: calc(4px * var(--s));
+    box-shadow: 0 0 calc(15px * var(--s)) #9400d3 inset;
     animation: spinRotate 8s linear infinite;
   }
 
   &.frame-lightning-storm {
-    border: 3px dashed #ffffff;
-    box-shadow: 0 0 20px #add8e6, inset 0 0 20px #add8e6;
+    border: calc(3px * var(--s)) dashed #ffffff;
+    box-shadow: 0 0 calc(20px * var(--s)) #add8e6, inset 0 0 calc(20px * var(--s)) #add8e6;
     animation: spinRotate 0.5s linear infinite, minimalGlow 0.2s infinite alternate;
   }
 
   /* --- 4. PREMIUM & STATUS --- */
 
   &.frame-solid-gold {
-    border: 5px solid #ffd700;
-    box-shadow: 0 0 10px #daa520, inset 0 0 10px #daa520;
+    border: calc(5px * var(--s)) solid #ffd700;
+    box-shadow: 0 0 calc(10px * var(--s)) #daa520, inset 0 0 calc(10px * var(--s)) #daa520;
     background: conic-gradient(from 0deg, transparent 0%, rgba(255,215,0,0.8) 20%, transparent 40%);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #fff 0);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - calc(4px * var(--s))), #fff 0);
     animation: spinRotate 4s linear infinite;
   }
 
   &.frame-diamond-ice {
-    border: 4px solid #e0ffff;
-    box-shadow: 0 0 15px #e0ffff, inset 0 0 15px #e0ffff;
+    border: calc(4px * var(--s)) solid #e0ffff;
+    box-shadow: 0 0 calc(15px * var(--s)) #e0ffff, inset 0 0 calc(15px * var(--s)) #e0ffff;
     border-style: ridge;
     animation: minimalGlow 2s infinite alternate;
   }
 
   &.frame-obsidian-ruby {
-    border: 5px solid #1a1a1a;
-    box-shadow: 0 0 15px #8b0000;
+    border: calc(5px * var(--s)) solid #1a1a1a;
+    box-shadow: 0 0 calc(15px * var(--s)) #8b0000;
     border-top-color: #8b0000;
     border-bottom-color: #8b0000;
     animation: spinRotate 5s linear infinite;
   }
 
   &.frame-royal-crown {
-    border: 4px solid #ffcc00;
-    box-shadow: 0 -10px 15px -5px #ffcc00; /* Crown glow effect */
+    border: calc(4px * var(--s)) solid #ffcc00;
+    box-shadow: 0 calc(-10px * var(--s)) calc(15px * var(--s)) calc(-5px * var(--s)) #ffcc00; /* Crown glow effect */
   }
 
   &.frame-platinum-shine {
-    border: 3px solid #e5e4e2;
-    box-shadow: 0 0 25px #ffffff, inset 0 0 15px #ffffff;
+    border: calc(3px * var(--s)) solid #e5e4e2;
+    box-shadow: 0 0 calc(25px * var(--s)) #ffffff, inset 0 0 calc(15px * var(--s)) #ffffff;
     animation: pulsePlasma 2s infinite alternate;
   }
 
   /* --- 5. FUN & SPECIAL --- */
 
   &.frame-slime-splatter {
-    border: 5px solid #39ff14;
-    border-bottom-width: 10px; /* Dripping effect */
+    border: calc(5px * var(--s)) solid #39ff14;
+    border-bottom-width: calc(10px * var(--s)); /* Dripping effect */
     border-bottom-left-radius: 40%;
     border-bottom-right-radius: 60%;
-    box-shadow: 0 10px 10px #39ff14;
+    box-shadow: 0 calc(10px * var(--s)) calc(10px * var(--s)) #39ff14;
   }
 
   &.frame-angelic-halo {
-    border: 4px solid #fffacd;
-    box-shadow: 0 -15px 20px #fffacd;
-    transform: translateY(-10px); /* Floating above */
+    border: calc(4px * var(--s)) solid #fffacd;
+    box-shadow: 0 calc(-15px * var(--s)) calc(20px * var(--s)) #fffacd;
+    transform: translateY(calc(-10px * var(--s))); /* Floating above */
   }
 
   &.frame-demonic-horns {
-    border: 4px solid #8b0000;
-    box-shadow: -10px -10px 10px #8b0000, 10px -10px 10px #8b0000;
+    border: calc(4px * var(--s)) solid #8b0000;
+    box-shadow: calc(-10px * var(--s)) calc(-10px * var(--s)) calc(10px * var(--s)) #8b0000, calc(10px * var(--s)) calc(-10px * var(--s)) calc(10px * var(--s)) #8b0000;
   }
 
   &.frame-cat-ears {
-    border: 3px solid #ff69b4;
-    box-shadow: -15px -15px 0 -10px #ff69b4, 15px -15px 0 -10px #ff69b4;
+    border: calc(3px * var(--s)) solid #ff69b4;
+    box-shadow: calc(-15px * var(--s)) calc(-15px * var(--s)) 0 calc(-10px * var(--s)) #ff69b4, calc(15px * var(--s)) calc(-15px * var(--s)) 0 calc(-10px * var(--s)) #ff69b4;
   }
 
   &.frame-valentine-love {
-    border: 4px dotted #ff1493;
-    box-shadow: 0 0 15px #ff1493, inset 0 0 15px #ff1493;
+    border: calc(4px * var(--s)) dotted #ff1493;
+    box-shadow: 0 0 calc(15px * var(--s)) #ff1493, inset 0 0 calc(15px * var(--s)) #ff1493;
     animation: breatheRing 1s ease-in-out infinite alternate;
   }
 }
 
 /* Animations */
 @keyframes ssjAura {
-  0% { filter: drop-shadow(0 -4px 10px rgba(255, 235, 59, 0.8)) drop-shadow(0 2px 5px rgba(255, 152, 0, 0.6)); }
-  100% { filter: drop-shadow(0 -8px 18px rgba(255, 235, 59, 1)) drop-shadow(0 4px 10px rgba(255, 152, 0, 0.9)); }
+  0% { filter: drop-shadow(0 calc(-4px * var(--s)) calc(10px * var(--s)) rgba(255, 235, 59, 0.8)) drop-shadow(0 calc(2px * var(--s)) calc(5px * var(--s)) rgba(255, 152, 0, 0.6)); }
+  100% { filter: drop-shadow(0 calc(-8px * var(--s)) calc(18px * var(--s)) rgba(255, 235, 59, 1)) drop-shadow(0 calc(4px * var(--s)) calc(10px * var(--s)) rgba(255, 152, 0, 0.9)); }
 }
 
 @keyframes ssjPulse {
@@ -262,25 +294,25 @@
 }
 
 @keyframes pulsePlasma {
-  0% { box-shadow: 0 0 10px #b300ff, 0 0 20px #b300ff inset; border-color: #b300ff; }
-  100% { box-shadow: 0 0 25px #ff00ff, 0 0 45px #ff00ff inset; border-color: #ff00ff; }
+  0% { box-shadow: 0 0 calc(10px * var(--s)) #b300ff, 0 0 calc(20px * var(--s)) #b300ff inset; border-color: #b300ff; }
+  100% { box-shadow: 0 0 calc(25px * var(--s)) #ff00ff, 0 0 calc(45px * var(--s)) #ff00ff inset; border-color: #ff00ff; }
 }
 
 @keyframes glitchRing {
   0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-  20% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, 2px); }
-  40% { clip-path: inset(80% 0 10% 0); transform: translate(2px, -2px); }
-  60% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, -2px); }
-  80% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 2px); }
+  20% { clip-path: inset(10% 0 80% 0); transform: translate(calc(-2px * var(--s)), calc(2px * var(--s))); }
+  40% { clip-path: inset(80% 0 10% 0); transform: translate(calc(2px * var(--s)), calc(-2px * var(--s))); }
+  60% { clip-path: inset(40% 0 40% 0); transform: translate(calc(-2px * var(--s)), calc(-2px * var(--s))); }
+  80% { clip-path: inset(20% 0 60% 0); transform: translate(calc(2px * var(--s)), calc(2px * var(--s))); }
 }
 
 @keyframes breatheRing {
-  0% { outline-offset: 2px; opacity: 0.7; }
-  100% { outline-offset: 8px; opacity: 1; }
+  0% { outline-offset: calc(2px * var(--s)); opacity: 0.7; }
+  100% { outline-offset: calc(8px * var(--s)); opacity: 1; }
 }
 
 @keyframes minimalGlow {
-  0% { opacity: 0.5; box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
-  100% { opacity: 1; box-shadow: 0 0 15px rgba(255, 255, 255, 1); }
+  0% { opacity: 0.5; box-shadow: 0 0 calc(5px * var(--s)) rgba(255, 255, 255, 0.5); }
+  100% { opacity: 1; box-shadow: 0 0 calc(15px * var(--s)) rgba(255, 255, 255, 1); }
 }
 .avatar-frame-btn.is-locked { opacity: 0.5; filter: grayscale(100%); cursor: not-allowed; }
