@@ -1,4 +1,3 @@
-
 /* Ensure the parent containers have relative positioning so the absolute overlay works */
 .post-avatar,
 .user-profile-avatar,
@@ -8,36 +7,44 @@
 
 .avatar-frame-overlay {
   position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 2;
-  box-sizing: border-box;
-  aspect-ratio: 1 / 1;
-}
-
-/* Post Avatars (45px usually, with 1em top padding) */
-.post-avatar .avatar-frame-overlay,
-.topic-avatar .avatar-frame-overlay {
-  width: var(--topic-avatar-width, 45px);
-  height: var(--topic-avatar-width, 45px);
-  top: 1em; /* Discourse adds 1em padding-top to topic-avatar */
-  left: 0;
-}
-
-/* User Card Avatars (120px usually) */
-.user-card-avatar .avatar-frame-overlay {
-  width: var(--avatar-width, 120px);
-  height: var(--avatar-width, 120px);
   top: 0;
   left: 0;
-}
-
-/* User Profile Avatars (120px usually) */
-.user-profile-avatar .avatar-frame-overlay {
   width: 120px;
   height: 120px;
-  top: 0;
-  left: 0;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  box-sizing: border-box;
+  transform-origin: top left;
+  z-index: 2;
+}
+
+/* 1. Post & Topic Avatars (45px usually) */
+/* scale = 45 / 120 = 0.375 */
+.post-avatar .avatar-frame-overlay {
+  transform: scale(0.375);
+}
+.topic-avatar .avatar-frame-overlay {
+  top: 1em; /* Discourse adds 1em padding-top to topic-avatar */
+  transform: scale(0.375);
+}
+
+/* 2. User Card Avatars */
+/* Desktop is 120px (scale 1), Mobile is 60px (scale 0.5) */
+.user-card-avatar .avatar-frame-overlay {
+  transform: scale(1);
+}
+.mobile-view .user-card-avatar .avatar-frame-overlay {
+  transform: scale(0.5);
+}
+
+/* 3. User Profile Avatars */
+/* Default is 120px (scale 1). Collapsed header is 45px (scale 0.375) */
+.user-profile-avatar .avatar-frame-overlay {
+  transform: scale(1);
+}
+.collapsed-info .user-profile-avatar .avatar-frame-overlay {
+  transform: scale(0.375);
 }
 
 .avatar-frame-overlay {
