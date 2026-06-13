@@ -3,6 +3,6 @@ plugins:
     default: true
     client: true
   avatar_frames_config:
-    default: "vibrant-neon:Vibrant Neon:tl0|cyberpunk-glitch:Cyberpunk Glitch:tl2|dragonball-ssj:Dragonball SSJ:group:vip|golden-staff:Golden Staff:group:staff"
+    default: "dragonball-ssj:Dragonball SSJ:tl0|ultra-instinct:Ultra Instinct:tl1|chakra-flow:Chakra Flow:tl1|sharingan-spin:Sharingan Spin:tl2|dark-haki:Dark Haki:tl2|neon-glitch:Neon Glitch:tl0|rgb-gamer:RGB Gamer:tl1|hologram-grid:Hologram Grid:tl1|plasma-ring:Plasma Ring:tl2|8bit-pixel:8-Bit Pixel:tl2|hellfire:Hellfire:tl0|frost-crystal:Frost Crystal:tl1|druid-nature:Druid Nature:tl1|arcane-circle:Arcane Circle:tl2|lightning-storm:Lightning Storm:tl2|solid-gold:Solid Gold:group:trust_level_3|diamond-ice:Diamond Ice:group:trust_level_4|obsidian-ruby:Obsidian Ruby:group:vip|royal-crown:Royal Crown:group:staff|platinum-shine:Platinum Shine:group:staff|slime-splatter:Slime Splatter:tl0|angelic-halo:Angelic Halo:tl1|demonic-horns:Demonic Horns:tl1|cat-ears:Cat Ears:tl0|valentine-love:Valentine Love:tl1"
     type: list
     client: true

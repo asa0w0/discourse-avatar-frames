@@ -1,3 +1,4 @@
+
 /* Ensure the parent containers have relative positioning so the absolute overlay works */
 .post-avatar,
 .user-profile-avatar,
@@ -17,88 +18,8 @@
   z-index: 2;
   box-sizing: border-box;
 
-  /* 1. Vibrant Neon (Photo Inspiration) */
-  &.frame-vibrant-neon {
-    border: 4px solid transparent;
-    background: linear-gradient(45deg, #ff0055, #00ffcc, #ffcc00, #aa00ff) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    filter: drop-shadow(0 0 6px rgba(255, 0, 85, 0.8));
-    animation: spinRotate 3s linear infinite;
-  }
-
-  /* 2. Cyberpunk Glitch */
-  &.frame-cyber-glitch {
-    border: 3px solid #00e5ff;
-    box-shadow: 0 0 8px #00e5ff, inset 0 0 8px #00e5ff;
-    animation: glitchRing 2s infinite;
-  }
-
-  /* 3. Gold Shimmer */
-  &.frame-gold-shimmer {
-    border: 3px solid #ffd700;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-    background: conic-gradient(from 0deg, transparent 0%, rgba(255,215,0,0.8) 20%, transparent 40%);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #fff 0);
-    animation: spinRotate 4s linear infinite;
-  }
-
-  /* 4. RGB Gamer */
-  &.frame-rgb-gamer {
-    background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #fff 0);
-    animation: spinRotate 2s linear infinite;
-  }
-
-  /* 5. Plasma Pulse */
-  &.frame-plasma-pulse {
-    border: 4px solid #b300ff;
-    box-shadow: 0 0 20px #b300ff, 0 0 40px #b300ff inset;
-    animation: pulsePlasma 1.5s ease-in-out infinite alternate;
-  }
-
-  /* 6. Sci-Fi Dots */
-  &.frame-sci-fi-dots {
-    border: 4px dotted #00ffaa;
-    filter: drop-shadow(0 0 5px #00ffaa);
-    animation: spinRotateReverse 6s linear infinite;
-  }
-
-  /* 7. Breathing Double Ring */
-  &.frame-breathing-ring {
-    border: 2px solid #ff0077;
-    outline: 2px solid #ff0077;
-    outline-offset: 4px;
-    animation: breatheRing 2s ease-in-out infinite alternate;
-  }
-
-  /* 8. Magma Edge */
-  &.frame-magma-edge {
-    border: 4px solid #ff4500;
-    box-shadow: 0 0 15px #ff4500, inset 0 0 10px #ff4500;
-    background: conic-gradient(from 0deg, #ff4500, #ff8c00, #ff4500);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #fff 0);
-    animation: spinRotate 1.5s linear infinite;
-  }
-
-  /* 9. Holographic Crystal */
-  &.frame-holo-crystal {
-    border: 3px solid rgba(255, 255, 255, 0.5);
-    background: conic-gradient(from 0deg, #e0f7fa, #80deea, #e0f7fa, #80deea, #e0f7fa);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #fff 0);
-    filter: drop-shadow(0 0 10px #80deea);
-    animation: spinRotate 5s linear infinite;
-  }
-
-  /* 10. Minimalist Glow */
-  &.frame-minimal-glow {
-    border: 2px solid #ffffff;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    animation: minimalGlow 3s infinite alternate;
-  }
-
-  /* 11. Dragonball SSJ Aura */
+  /* --- 1. ANIME & ENERGY --- */
+  
   &.frame-dragonball-ssj {
     border: 4px solid transparent;
     background: linear-gradient(0deg, #ffcc00, #ffeb3b, #fff9c4) border-box;
@@ -109,11 +30,173 @@
     animation: ssjAura 0.5s infinite alternate, ssjPulse 2s linear infinite;
   }
 
-  /* 12. Golden Staff */
-  &.frame-golden-staff {
-    border: 3px solid #ffca28;
-    box-shadow: 0 0 10px #ffc107, 0 0 20px #ffb300, inset 0 0 10px #ffe082;
-    animation: pulsePlasma 3s infinite alternate;
+  &.frame-ultra-instinct {
+    border: 3px solid #e0e0e0;
+    box-shadow: 0 0 15px #ffffff, inset 0 0 10px #ffffff;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+    animation: pulsePlasma 2s infinite alternate, spinRotateReverse 10s linear infinite;
+  }
+
+  &.frame-chakra-flow {
+    border: 4px solid #00bfff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00bfff, inset 0 0 15px #00bfff;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation: spinRotate 1s linear infinite;
+  }
+
+  &.frame-sharingan-spin {
+    border: 4px solid #cc0000;
+    box-shadow: 0 0 10px #000, inset 0 0 5px #cc0000;
+    border-style: dashed;
+    animation: spinRotateReverse 3s linear infinite;
+  }
+
+  &.frame-dark-haki {
+    border: 4px solid #111;
+    box-shadow: 0 0 10px #ff0000, inset 0 0 10px #ff0000;
+    filter: drop-shadow(0 0 5px #000);
+    animation: glitchRing 0.5s infinite;
+  }
+
+  /* --- 2. CYBERPUNK & GAMING --- */
+
+  &.frame-neon-glitch {
+    border: 3px solid #ff00ff;
+    box-shadow: 0 0 8px #00ffff, inset 0 0 8px #ff00ff;
+    animation: glitchRing 1.5s infinite;
+  }
+
+  &.frame-rgb-gamer {
+    background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #fff 0);
+    animation: spinRotate 2s linear infinite;
+  }
+
+  &.frame-hologram-grid {
+    border: 3px solid rgba(0, 255, 255, 0.5);
+    background: repeating-conic-gradient(from 0deg, rgba(0, 255, 255, 0.2) 0deg 10deg, transparent 10deg 20deg);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #fff 0);
+    animation: spinRotate 6s linear infinite;
+  }
+
+  &.frame-plasma-ring {
+    border: 4px solid #8a2be2;
+    box-shadow: 0 0 20px #8a2be2, 0 0 40px #8a2be2 inset;
+    animation: pulsePlasma 1s ease-in-out infinite alternate;
+  }
+
+  &.frame-8bit-pixel {
+    border: 4px dashed #00ff00;
+    border-radius: 0; /* Blocky look */
+    box-shadow: inset 0 0 0 4px #000;
+    transform: scale(1.1);
+  }
+
+  /* --- 3. MAGIC & ELEMENTS --- */
+
+  &.frame-hellfire {
+    border: 4px solid #ff4500;
+    box-shadow: 0 0 15px #ff4500, inset 0 0 10px #ff4500;
+    background: conic-gradient(from 0deg, #ff4500, #ff8c00, #ff4500);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #fff 0);
+    animation: spinRotate 1.5s linear infinite;
+  }
+
+  &.frame-frost-crystal {
+    border: 4px solid #00ffff;
+    box-shadow: 0 0 15px #00ffff, inset 0 0 10px #00ffff;
+    border-style: dotted;
+    animation: breatheRing 3s ease-in-out infinite alternate;
+  }
+
+  &.frame-druid-nature {
+    border: 5px double #32cd32;
+    box-shadow: 0 0 10px #228b22;
+    animation: spinRotateReverse 15s linear infinite;
+  }
+
+  &.frame-arcane-circle {
+    border: 2px solid #9400d3;
+    outline: 2px dashed #9400d3;
+    outline-offset: 4px;
+    box-shadow: 0 0 15px #9400d3 inset;
+    animation: spinRotate 8s linear infinite;
+  }
+
+  &.frame-lightning-storm {
+    border: 3px dashed #ffffff;
+    box-shadow: 0 0 20px #add8e6, inset 0 0 20px #add8e6;
+    animation: spinRotate 0.5s linear infinite, minimalGlow 0.2s infinite alternate;
+  }
+
+  /* --- 4. PREMIUM & STATUS --- */
+
+  &.frame-solid-gold {
+    border: 5px solid #ffd700;
+    box-shadow: 0 0 10px #daa520, inset 0 0 10px #daa520;
+    background: conic-gradient(from 0deg, transparent 0%, rgba(255,215,0,0.8) 20%, transparent 40%);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #fff 0);
+    animation: spinRotate 4s linear infinite;
+  }
+
+  &.frame-diamond-ice {
+    border: 4px solid #e0ffff;
+    box-shadow: 0 0 15px #e0ffff, inset 0 0 15px #e0ffff;
+    border-style: ridge;
+    animation: minimalGlow 2s infinite alternate;
+  }
+
+  &.frame-obsidian-ruby {
+    border: 5px solid #1a1a1a;
+    box-shadow: 0 0 15px #8b0000;
+    border-top-color: #8b0000;
+    border-bottom-color: #8b0000;
+    animation: spinRotate 5s linear infinite;
+  }
+
+  &.frame-royal-crown {
+    border: 4px solid #ffcc00;
+    box-shadow: 0 -10px 15px -5px #ffcc00; /* Crown glow effect */
+  }
+
+  &.frame-platinum-shine {
+    border: 3px solid #e5e4e2;
+    box-shadow: 0 0 25px #ffffff, inset 0 0 15px #ffffff;
+    animation: pulsePlasma 2s infinite alternate;
+  }
+
+  /* --- 5. FUN & SPECIAL --- */
+
+  &.frame-slime-splatter {
+    border: 5px solid #39ff14;
+    border-bottom-width: 10px; /* Dripping effect */
+    border-bottom-left-radius: 40%;
+    border-bottom-right-radius: 60%;
+    box-shadow: 0 10px 10px #39ff14;
+  }
+
+  &.frame-angelic-halo {
+    border: 4px solid #fffacd;
+    box-shadow: 0 -15px 20px #fffacd;
+    transform: translateY(-10px); /* Floating above */
+  }
+
+  &.frame-demonic-horns {
+    border: 4px solid #8b0000;
+    box-shadow: -10px -10px 10px #8b0000, 10px -10px 10px #8b0000;
+  }
+
+  &.frame-cat-ears {
+    border: 3px solid #ff69b4;
+    box-shadow: -15px -15px 0 -10px #ff69b4, 15px -15px 0 -10px #ff69b4;
+  }
+
+  &.frame-valentine-love {
+    border: 4px dotted #ff1493;
+    box-shadow: 0 0 15px #ff1493, inset 0 0 15px #ff1493;
+    animation: breatheRing 1s ease-in-out infinite alternate;
   }
 }
 
