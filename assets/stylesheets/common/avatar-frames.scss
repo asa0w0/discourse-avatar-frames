@@ -18,11 +18,11 @@
   
   /* Default Scale */
   --s: 1;
-  width: calc(calc(120px * var(--s)) * var(--s));
-  height: calc(calc(120px * var(--s)) * var(--s));
+  width: calc(120px * var(--s));
+  height: calc(120px * var(--s));
 }
 
-/* 1. Post & Topic Avatars (calc(45px * var(--s)) usually) */
+/* 1. Post & Topic Avatars (45px usually) */
 .post-avatar .avatar-frame-overlay {
   --s: 0.375;
 }
@@ -48,49 +48,6 @@
 }
 
 .avatar-frame-overlay {
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: calc(120px * var(--s));
-  height: calc(120px * var(--s));
-  border-radius: 50%;
-  aspect-ratio: 1 / 1;
-  box-sizing: border-box;
-  transform-origin: center center;
-}
-
-/* 1. Post & Topic Avatars (calc(45px * var(--s)) usually) */
-/* scale = 45 / 120 = 0.375 */
-.post-avatar .avatar-frame-overlay-scaler {
-  transform: scale(0.375);
-}
-.topic-avatar .avatar-frame-overlay-scaler {
-  top: 1em; /* Discourse adds 1em padding-top to topic-avatar */
-  transform: scale(0.375);
-}
-
-/* 2. User Card Avatars */
-/* Desktop is calc(120px * var(--s)) (scale 1), Mobile is calc(60px * var(--s)) (scale 0.5) */
-.user-card-avatar .avatar-frame-overlay-scaler {
-  transform: scale(1);
-}
-.mobile-view .user-card-avatar .avatar-frame-overlay-scaler {
-  transform: scale(0.5);
-}
-
-/* 3. User Profile Avatars */
-/* Default is calc(120px * var(--s)) (scale 1). Collapsed header is calc(45px * var(--s)) (scale 0.375) */
-.user-profile-avatar .avatar-frame-overlay-scaler {
-  transform: scale(1);
-}
-.collapsed-info .user-profile-avatar .avatar-frame-overlay-scaler {
-  transform: scale(0.375);
-}
-
-.avatar-frame-overlay {
-  /* --- 1. ANIME & ENERGY --- */
-  
   &.frame-dragonball-ssj {
     border: calc(4px * var(--s)) solid transparent;
     background: linear-gradient(0deg, #ffcc00, #ffeb3b, #fff9c4) border-box;
