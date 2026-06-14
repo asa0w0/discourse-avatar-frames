@@ -1,6 +1,6 @@
 # name: discourse-avatar-frames
 # about: Allows users to select animated CSS avatar frames
-# version: 0.1
+# version: 0.1.1
 # authors: asa0w0
 # url: https://github.com/asa0w0/discourse-avatar-frames
 
