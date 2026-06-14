@@ -2,3 +2,7 @@ de:
   site_settings:
     avatar_frames_enabled: "Avatar Frames Plugin aktivieren"
     avatar_frames_config: "Avatar Frames Konfiguration (Format: rahmen_id:Rahmen Name:bedingung). Erlaubte Bedingungen: tl0, tl1, tl2, tl3, tl4, group:gruppen_name"
+  avatar_frames:
+    errors:
+      no_permission: "Du hast nicht die benötigte Berechtigung für diesen Avatar Rahmen."
+      does_not_exist: "Dieser Avatar Rahmen existiert nicht."

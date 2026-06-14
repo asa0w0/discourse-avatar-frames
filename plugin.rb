@@ -17,8 +17,14 @@ after_initialize do
     validate :validate_avatar_frame_permission
 
     def validate_avatar_frame_permission
+      return unless SiteSetting.avatar_frames_enabled
+
       frame = self.custom_fields['avatar_frame']
       return if frame.blank? || frame == 'none'
+
+      # Only validate if the frame has actually changed
+      old_frame = UserCustomField.find_by(user_id: self.id, name: 'avatar_frame')&.value
+      return if frame == old_frame
 
       config_str = SiteSetting.avatar_frames_config || ""
       allowed = false
@@ -46,9 +52,9 @@ after_initialize do
       end
 
       if frame_found && !allowed
-        self.errors.add(:base, "Du hast nicht die benötigte Berechtigung für diesen Avatar Rahmen.")
+        self.errors.add(:base, I18n.t("avatar_frames.errors.no_permission"))
       elsif !frame_found
-        self.errors.add(:base, "Dieser Avatar Rahmen existiert nicht.")
+        self.errors.add(:base, I18n.t("avatar_frames.errors.does_not_exist"))
       end
     end
   end
@@ -66,7 +72,7 @@ after_initialize do
   end
 
   # Serialize into Post (Topic stream)
-  add_to_serializer(:post, :user_avatar_frame, false) do
+  add_to_serializer(:post, :user_avatar_frame) do
     object.user&.custom_fields&.[]('avatar_frame')
   end
 end
