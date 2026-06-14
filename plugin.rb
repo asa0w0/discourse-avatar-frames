@@ -2,7 +2,7 @@
 # about: Allows users to select animated CSS avatar frames
 # version: 0.1
 # authors: asa0w0
-# url: https://github.com/discourse/discourse-avatar-frames
+# url: https://github.com/asa0w0/discourse-avatar-frames
 
 enabled_site_setting :avatar_frames_enabled
 
