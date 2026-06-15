@@ -59,26 +59,44 @@
 
   &.frame-dream-dive-stars {
     background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/dream-dive-stars.png");
+    &.no-animations {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/dream-dive-stars-static.png");
+    }
   }
 
   &.frame-head-in-the-clouds-sunset {
     background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/head-in-the-clouds-sunset.png");
+    &.no-animations {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/head-in-the-clouds-sunset-static.png");
+    }
   }
 
   &.frame-sakura-pink {
     background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/sakura-pink.png");
+    &.no-animations {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/sakura-pink-static.png");
+    }
   }
 
   &.frame-chromawave {
     background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/chromawave.png");
+    &.no-animations {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/chromawave-static.png");
+    }
   }
 
   &.frame-bubble {
     background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/bubble.png");
+    &.no-animations {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/bubble-static.png");
+    }
   }
 
   &.frame-terrarium {
     background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/terrarium.png");
+    &.no-animations {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/terrarium-static.png");
+    }
   }
 }
 
@@ -119,6 +137,25 @@
   .avatar-frame-overlay {
     animation: none !important;
     transition: none !important;
+    
+    &.frame-dream-dive-stars {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/dream-dive-stars-static.png") !important;
+    }
+    &.frame-head-in-the-clouds-sunset {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/head-in-the-clouds-sunset-static.png") !important;
+    }
+    &.frame-sakura-pink {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/sakura-pink-static.png") !important;
+    }
+    &.frame-chromawave {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/chromawave-static.png") !important;
+    }
+    &.frame-bubble {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/bubble-static.png") !important;
+    }
+    &.frame-terrarium {
+      background-image: absolute-image-url("/plugins/discourse-avatar-frames/images/terrarium-static.png") !important;
+    }
   }
 }
 
