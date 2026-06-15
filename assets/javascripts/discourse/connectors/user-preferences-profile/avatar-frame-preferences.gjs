@@ -16,6 +16,7 @@ export default class AvatarFramePreferences extends Component {
   @service currentUser;
   @service siteSettings;
   @tracked selectedFrame = this.currentUser?.custom_fields?.avatar_frame || "none";
+  @tracked disableAnimations = this.currentUser?.custom_fields?.disable_avatar_animations === "true" || this.currentUser?.custom_fields?.disable_avatar_animations === true;
 
   get frames() {
     const configStr = this.siteSettings.avatar_frames_config || "";
@@ -88,6 +89,33 @@ export default class AvatarFramePreferences extends Component {
     }
   }
 
+  @action
+  async toggleDisableAnimations(event) {
+    if (this.saving) {
+      return;
+    }
+    const checked = event.target.checked;
+    this.disableAnimations = checked;
+    this.saving = true;
+
+    const customFields = Object.assign({}, this.currentUser.custom_fields, { 
+      disable_avatar_animations: checked
+    });
+
+    try {
+      await ajax(`/users/${this.currentUser.username}.json`, {
+        type: "PUT",
+        data: { custom_fields: customFields }
+      });
+      this.currentUser.set("custom_fields", customFields);
+    } catch (e) {
+      this.disableAnimations = !checked;
+      popupAjaxError(e);
+    } finally {
+      this.saving = false;
+    }
+  }
+
   <template>
     <div class="control-group avatar-frame-preferences">
       <label class="control-label">{{i18n "avatar_frames.title"}}</label>
@@ -119,6 +147,17 @@ export default class AvatarFramePreferences extends Component {
         </div>
         <div class="instructions" style="margin-top: 10px; font-size: 0.9em; color: var(--primary-medium);">
           {{i18n "avatar_frames.instructions"}}
+        </div>
+        <div class="avatar-frame-accessibility" style="margin-top: 15px; display: flex; align-items: center;">
+          <label class="checkbox-label" style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.95em;">
+            <input 
+              type="checkbox" 
+              checked={{this.disableAnimations}} 
+              {{on "change" this.toggleDisableAnimations}}
+              disabled={{this.saving}}
+            />
+            {{i18n "avatar_frames.disable_animations"}}
+          </label>
         </div>
       </div>
     </div>

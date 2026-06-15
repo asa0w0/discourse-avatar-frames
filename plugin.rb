@@ -10,7 +10,9 @@ register_asset "stylesheets/common/avatar-frames.scss"
 
 after_initialize do
   User.register_custom_field_type('avatar_frame', :string)
+  User.register_custom_field_type('disable_avatar_animations', :boolean)
   register_editable_user_custom_field(:avatar_frame)
+  register_editable_user_custom_field(:disable_avatar_animations)
 
   # Validate frame permissions when user saves their profile
   User.class_eval do
@@ -61,6 +63,7 @@ after_initialize do
 
   # Make it public so the frontend can read it everywhere
   allow_public_user_custom_field(:avatar_frame)
+  allow_public_user_custom_field(:disable_avatar_animations)
 
   # Serialize into User (Profile / Card)
   add_to_serializer(:user, :avatar_frame) do

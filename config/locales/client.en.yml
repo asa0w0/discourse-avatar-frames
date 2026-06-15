@@ -6,3 +6,4 @@ en:
       requires_level: "🔒 Requires Level %{level}"
       requires_group: "🔒 Requires VIP/Group"
       instructions: "Select an animated frame for your avatar. Special frames require a higher Trust Level or VIP status."
+      disable_animations: "Disable avatar frame animations"

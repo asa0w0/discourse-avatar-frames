@@ -121,3 +121,8 @@
     transition: none !important;
   }
 }
+
+.avatar-frame-overlay.no-animations {
+  animation: none !important;
+  transition: none !important;
+}
