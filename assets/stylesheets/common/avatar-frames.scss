@@ -113,3 +113,11 @@
     }
   }
 }
+
+/* Accessibility: Support prefers-reduced-motion to stop any CSS transitions or keyframe animations */
+@media (prefers-reduced-motion: reduce) {
+  .avatar-frame-overlay {
+    animation: none !important;
+    transition: none !important;
+  }
+}
