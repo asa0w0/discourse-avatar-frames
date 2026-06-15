@@ -37,33 +37,6 @@
   z-index: 2;
   box-sizing: border-box;
   transform-origin: center center;
-  
-  /* Default Scale */
-  --s: 1;
-}
-
-/* 1. Post & Topic Avatars (45px usually) */
-.post-avatar .avatar-frame-overlay {
-  --s: 0.375;
-}
-.topic-avatar .avatar-frame-overlay {
-  --s: 0.375;
-}
-
-/* 2. User Card Avatars */
-.user-card-avatar .avatar-frame-overlay {
-  --s: 1;
-}
-.mobile-view .user-card-avatar .avatar-frame-overlay {
-  --s: 0.5;
-}
-
-/* 3. User Profile Avatars */
-.user-profile-avatar .avatar-frame-overlay {
-  --s: 1;
-}
-.collapsed-info .user-profile-avatar .avatar-frame-overlay {
-  --s: 0.375;
 }
 
 .avatar-frame-overlay {
@@ -110,6 +83,12 @@
 }
 
 .avatar-frame-btn.is-locked { opacity: 0.5; filter: grayscale(100%); cursor: not-allowed; }
+
+.avatar-frame-grid.is-saving {
+  opacity: 0.7;
+  pointer-events: none;
+  cursor: wait;
+}
 
 .avatar-frame-preferences {
   .preview-avatar-wrapper {

@@ -57,13 +57,17 @@ export default class AvatarFramePreferences extends Component {
     return framesList;
   }
 
+  @tracked saving = false;
+
   @action
   async selectFrame(frame) {
-    if (frame.isLocked) {
+    if (frame.isLocked || this.saving) {
       return;
     }
     
+    const previousFrame = this.selectedFrame;
     this.selectedFrame = frame.id;
+    this.saving = true;
     
     const customFields = Object.assign({}, this.currentUser.custom_fields, { 
       avatar_frame: frame.id === "none" ? null : frame.id 
@@ -77,7 +81,10 @@ export default class AvatarFramePreferences extends Component {
       // Update local current user
       this.currentUser.set("custom_fields", customFields);
     } catch (e) {
+      this.selectedFrame = previousFrame;
       popupAjaxError(e);
+    } finally {
+      this.saving = false;
     }
   }
 
@@ -85,7 +92,7 @@ export default class AvatarFramePreferences extends Component {
     <div class="control-group avatar-frame-preferences">
       <label class="control-label">{{i18n "avatar_frames.title"}}</label>
       <div class="controls">
-        <div class="avatar-frame-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;">
+        <div class="avatar-frame-grid {{if this.saving 'is-saving'}}" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;">
           {{#each this.frames as |frame|}}
             <button 
               type="button" 
