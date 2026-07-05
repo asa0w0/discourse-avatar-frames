@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
+import { isAnimationsDisabled } from "../../lib/avatar-frame-utils";
 
 export default class AvatarFramePost extends Component {
   @service currentUser;
@@ -10,8 +11,7 @@ export default class AvatarFramePost extends Component {
   }
 
   get disableAnimations() {
-    const val = this.currentUser?.custom_fields?.disable_avatar_animations;
-    return val === "true" || val === true;
+    return isAnimationsDisabled(this.currentUser);
   }
 
   <template>

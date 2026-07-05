@@ -8,6 +8,7 @@ import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 import avatar from "discourse/helpers/avatar";
 import I18n, { i18n } from "discourse-i18n";
+import { isAnimationsDisabled } from "../../lib/avatar-frame-utils";
 
 const eq = (a, b) => a === b;
 const notEq = (a, b) => a !== b;
@@ -16,7 +17,7 @@ export default class AvatarFramePreferences extends Component {
   @service currentUser;
   @service siteSettings;
   @tracked selectedFrame = this.currentUser?.custom_fields?.avatar_frame || "none";
-  @tracked disableAnimations = this.currentUser?.custom_fields?.disable_avatar_animations === "true" || this.currentUser?.custom_fields?.disable_avatar_animations === true;
+  @tracked disableAnimations = isAnimationsDisabled(this.currentUser);
 
   get frames() {
     const configStr = this.siteSettings.avatar_frames_config || "";

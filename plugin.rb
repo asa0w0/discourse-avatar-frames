@@ -3,6 +3,7 @@
 # version: 0.1.1
 # authors: asa0w0
 # url: https://github.com/asa0w0/discourse-avatar-frames
+# required_version: 3.2.0
 
 enabled_site_setting :avatar_frames_enabled
 
